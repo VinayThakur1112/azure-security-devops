@@ -8,6 +8,7 @@ steps:
 - checkout: self
   persistCredentials: true
 
+
 - script: |
     mvn verify package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=azuresecuritydevops -Dsonar.projectKey=azuresecuritydevopsprojectkey -Dsonar.login=${{ secrets.AZUREDEVOPSTOKEN }}
   displayName: 'Integrate SAST using SonarCloud in Azure DevOps DevSecOps Pipeline'
