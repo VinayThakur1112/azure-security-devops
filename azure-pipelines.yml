@@ -1,0 +1,16 @@
+trigger:
+- main   # branch you want to sync
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+  persistCredentials: true
+
+- script: |
+    git clone https://github.com/VinayThakur1112/azure-security-devops.git github-repo
+    cd github-repo
+    git remote add azdo https://$(System.AccessToken)@dev.azure.com/VDoSecurityDevops/azure_security_project/_git/azure_security_project
+    git push azdo main --force
+  displayName: 'Sync GitHub → Azure DevOps'
